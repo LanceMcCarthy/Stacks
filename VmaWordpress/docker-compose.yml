@@ -1,0 +1,28 @@
+services:
+  wordpress:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_USER: mySqlUser
+      WORDPRESS_DB: wordpress
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD_ENV}
+      WORDPRESS_DB_HOST: db:3306
+    ports:
+      - "82:80"
+    restart: unless-stopped
+    depends_on:
+      - db
+    volumes:
+      - /data/compose/7/html:/var/www/html
+
+  db:
+    image: mariadb:latest
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: mySqlUser
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD_ENV}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD_ENV}
+    ports:
+      - "3306/tcp"
+    restart: unless-stopped
+    volumes:
+      - /data/compose/7/database:/var/lib/mysql

@@ -1,0 +1,6 @@
+services:
+  app:
+    image: 'lancemccarthy/myblazorapp:latest'
+    restart: unless-stopped
+    ports:
+      - '8999:8080'

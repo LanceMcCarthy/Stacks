@@ -1,0 +1,7 @@
+services:
+  dynamic_secrets_app:
+    image: 'lancemccarthy/secretsmocker:latest'
+    restart: unless-stopped
+    ports:
+      - '8488:8080'
+    network_mode: bridge
