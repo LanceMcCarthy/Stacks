@@ -29,7 +29,7 @@ volumes:
 
 networks:
   wg:
-    driver: host
+    driver: bridge
     enable_ipv6: false
     # ipam:
     #   driver: default
