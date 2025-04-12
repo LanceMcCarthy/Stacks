@@ -6,9 +6,9 @@ services:
     ports:
       - "51820:51820/udp"
       - "51880:51821/tcp"
-    # networks:
-    #   wg:
-    #     ipv4_address: 10.42.42.42
+    networks:
+      wg:
+        # ipv4_address: 10.42.42.42
     volumes:
       - etc_wireguard:/etc/wireguard
       - /lib/modules:/lib/modules:ro
@@ -22,16 +22,16 @@ services:
     environment:
       - INSECURE=true
       - PORT=51880
-      #- HOST=0.0.0.0
+      - HOST=0.0.0.0
 
 volumes:
   etc_wireguard:
 
-# networks:
-#   wg:
-#     driver: host
-#     enable_ipv6: false
-#     ipam:
-#       driver: default
-#       config:
-#         - subnet: 10.42.42.0/24
+networks:
+  wg:
+    driver: host
+    enable_ipv6: false
+    # ipam:
+    #   driver: default
+    #   config:
+    #     - subnet: 10.42.42.0/24
